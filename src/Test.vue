@@ -1,17 +1,24 @@
 <template>
-  <h1>Hello <span class="name">{{ name }}</span></h1>
+  <h1>
+    Hello
+    <span class="name">
+     {{ name }}
+    </span>
+  </h1>
 </template>
 
-<script lang="ts">
-    import { defineComponent } from 'vue';
-    export default defineComponent({
-        props: {
-            name: {
-                type: String as () => string,
-                default: "John"
-            }
-        }
-    })
+<script setup lang="ts">
+import { ref, Ref } from 'vue';
+const props = defineProps({
+    test: {
+      type: String,
+      default: "Vue prop example"
+    }
+})
+
+const name :Ref<string> = ref("World")
+console.log(props.test)
+
 </script>
 
 <style scoped>

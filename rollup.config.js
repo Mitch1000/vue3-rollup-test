@@ -2,7 +2,7 @@ import vue from 'rollup-plugin-vue'
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
-import typescript from 'rollup-plugin-typescript2'
+import esbuild from 'rollup-plugin-esbuild'
 import alias from '@rollup/plugin-alias';
 
 import livereload from 'rollup-plugin-livereload'
@@ -22,9 +22,11 @@ const plugins = [
     postcss({
         minimize: true
     }),
-    typescript({
-        include: [/\.tsx?$/, /\.vue\?.*?lang=ts/],
-        useTsconfigDeclarationDir: true
+    esbuild({
+      include: /\.[jt]s$/,
+      target: 'es2022',
+      tsconfig: 'tsconfig.json',
+      sourceMap: true
     }),
 ]
 
